@@ -30,7 +30,7 @@ function getInteger(product, add, price) {
   
   if (add) {
     Count_Product += 1;
-  } else {
+  } else if(ProductNum.value > 0) {
     Count_Product -= 1;
   }
   ProductNum.value = Count_Product
@@ -38,10 +38,18 @@ function getInteger(product, add, price) {
   let singlePrice = Count_Product * price
   add_Product.innerText = singlePrice
 
+  calculateTotal()
   
 }
 
 
 function calculateTotal() {
-  
+  const phone_Total = parseInt(document.getElementById("phone-display").innerText)
+  const case_Total = parseInt(document.getElementById("case-display").innerText)
+  const calSubTotal = phone_Total + case_Total;
+  sub_Total.innerText = calSubTotal;
+  const calTax = parseFloat((calSubTotal * 0.2).toFixed(2))
+  tax.innerText = calTax;
+  total.innerText = calSubTotal + calTax
+
 }
